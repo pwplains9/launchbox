@@ -1,0 +1,14 @@
+// stylelint-disable at-rule-empty-line-before
+
+// не трогать этот импорт, он нужен для работы svg-спрайтов
+@import "./sprites";
+
+@import "variables";
+@import "functions";
+@import "mixins";
+@import "fonts";
+@import "base";
+@import "helpers";
+@import "project/ui-kit";
+@import "@components/header/header.scss";
+@import "@components/footer/footer.scss";

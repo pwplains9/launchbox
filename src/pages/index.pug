@@ -1,0 +1,239 @@
+extends @pug/base
+
+append globals
+    - pageName = 'home'
+    - title = data[pageName]?.meta?.title ?? data.general.title
+    - description = data[pageName]?.meta?.description ?? data.general.description
+    - image = data[pageName]?.meta?.image ?? data.general.image
+
+append vars
+    - meta.keywords = data[pageName]?.meta?.keywords ?? data.general.keywords
+
+    each linkValue, linkKey in data.general.link
+        - link[linkKey] = linkValue
+
+    each metaValue, metaKey in data.general.meta
+        - meta[metaKey] = metaValue
+
+block content
+    .popup.is-hidden(data-item="1")
+        .popup-bg
+        .popup-content
+            .popup-edit
+                +svg('edit-white')
+            .popup-close
+                +svg('close')
+            .popup-images
+            .popup-text
+    main
+        include @components/header/header.pug
+        .insert(style=`background-image: url(${baseDir}assets/images/insert-1.jpg)`)
+        .container
+            .rating.df-line.al-center.background.mt-216
+                .rating-number
+                    | 4.0
+                .rating-stars.df.al-center
+                    .rating-star.is-select
+                    .rating-star.is-select
+                    .rating-star.is-select
+                    .rating-star.is-select
+                    .rating-star
+            .df.al-center.ju-space-between.m-16-0-24
+                .title-lg
+                    | mario racing 2
+                .df.al-center
+                    .settings.df.al-center
+                        +svg('edit')
+                        | Edit
+                    .settings.settings--border.df.al-center
+                        +svg('add')
+                        | Add to collection
+            .info.df.al-center.ju-space-between
+                .info-card.background
+                    .info-title.df.al-center.ju-space-between
+                        | Release date
+                        +svg('date')
+                    .info-text
+                        | December 24, 1988
+                .info-card.background
+                    .info-title.df.al-center.ju-space-between
+                        | Platform
+                        +svg('play')
+                    .info-text
+                        | Nintendo Entertainment System
+                .info-card.background
+                    .info-title.df.al-center.ju-space-between
+                        | Game type
+                        +svg('type')
+                    .info-text
+                        | Released
+                .info-card.background
+                    .info-title.df.al-center.ju-space-between
+                        | Max players
+                        +svg('player')
+                    .info-text
+                        | 1
+            .tabs
+                .tabs-top.df.ju-space-between.js-tabs(data-tabs-target="#tabs-containers")
+                    .tabs-navigation.background.df
+                        .tabs-link.is-active.js-tab(data-tab-target="tab-1")
+                            | Details
+                        .tabs-link.js-tab(data-tab-target="tab-2")
+                            | Images
+
+                    .settings.settings--text.df.al-center
+                        | Mark for deletion
+
+                .tabs-content(data-tabs-target="#tabs-containers" id="tabs-containers")
+                    .tabs-inner.js-tabs-container.tab-1.is-active(data-tab="1" id="tab-1")
+                        .df.ju-space-between
+                            .col-1.df.ju-space-between.flex-wrap
+                                .background.background--100.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Overview
+                                    .text
+                                        | He's Back! And this time the evil Dr. Wily (once the supreme power in the universe) has created even more sinister robots to mount his attack. But as MegaMan, you've also grown in power and ability. Can you save mankind from the evil desires of Dr. Wily? Each of the eight empires is ruled by a different super-robot. You must defeat each enemy on his own turf, building up weapons as you go. Only after all are destroyed will you go head-on with the mastermind himself, the evil Dr. Wily.
+                                .background.background--100.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Alternate name
+                                    ul.list
+                                        li.df.ju-space-between.al-center.mb-12
+                                            .text.text--dot
+                                                | Rockman 2: Dr. Wily no Nazo
+                                            .text.df.al-center
+                                                | Japan
+                                                span.country
+                                                    img(src=`${baseDir}assets/images/japan.png`)
+                                        li.df.ju-space-between.al-center.mb-12
+                                            .text.text--dot
+                                                | Mega Man 2: Dr. Wily's Riddle
+                                            .text.df.al-center
+                                                | France
+                                                span.country
+                                                    img(src=`${baseDir}assets/images/france.png`)
+                                        li.df.ju-space-between.al-center
+                                            .text.text--dot
+                                                | Rockman 2: Dr. Wily's Riddle
+                                            .text.df.al-center
+                                                | Canada
+                                                span.country
+                                                    img(src=`${baseDir}assets/images/canada.png`)
+                                .background.background--100.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Wikipedia
+                                    a.link(href="https://en.wikipedia.org/wiki/Mega_Man_2" target="_blank")
+                                        | https://en.wikipedia.org/wiki/Mega_Man_2
+                                .background.background--100.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Video
+                                    a.link(href="https://www.youtube.com/watch?v=VJxPC2ZT288&feature=emb_title" target="_blank")
+                                        | https://www.youtube.com/watch?v=VJxPC2ZT288&feature=emb_title
+                                .background.background--50.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Cooperative
+                                    .text
+                                        | No
+                                .background.background--50.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | ESRB
+                                    .text
+                                        | Not Rated
+                            .col-2
+                                .background.background--100.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Genres
+                                    a.link(href="#" target="_blank")
+                                        | Action, Platform
+                                .background.background--100.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Developers
+                                    a.link(href="#" target="_blank")
+                                        | Capcom
+                                .background.background--100.p-24.mb-18.b-radius
+                                    .title-md.mb-12
+                                        | Publishers
+                                    a.link(href="#" target="_blank")
+                                        | Capcom
+                    .tabs-inner.js-tabs-container.tab-2.is-hidden(data-tab="1" id="tab-2")
+                        .grid
+                            .grid-item.tall.js-popup
+                                img(src=`${baseDir}assets/images/cards/1.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.big.js-popup
+                                img(src=`${baseDir}assets/images/cards/2.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/3.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/4.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/5.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/6.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/7.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/8.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/9.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+                            .grid-item.js-popup
+                                img(src=`${baseDir}assets/images/cards/10.png`)
+                                .grid-edit
+                                    +svg('edit-white')
+                                .grid-zoom
+                                    +svg('zoom')
+                                .grid-text
+                                    | Barbarian II: The Dungeon of Drax - Box - Back (Europe)
+    include @components/footer/footer.pug

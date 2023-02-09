@@ -1,0 +1,54 @@
+.footer {
+    margin-top: 37px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-top: 1px solid rgba(245, 247, 250, 0.06);
+
+
+    &-logo {
+        display: block;
+        width: 156.78px;
+        height: 40px;
+    }
+
+    &-menu {
+        //margin-left: -62px;
+
+        li {
+            margin: 0 35px;
+
+            a {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 24px;
+                color: rgba($color-white, 0.6);
+                letter-spacing: -0.4px;
+            }
+        }
+    }
+
+    &-right {
+        display: flex;
+        align-items: center;
+    }
+
+    &-prod {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 24px;
+        color: rgba(253, 253, 253, 0.32);
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 4px;
+            color: $color-white;
+        }
+
+        svg {
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}

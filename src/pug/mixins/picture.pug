@@ -1,0 +1,18 @@
+mixin picture(props = {})
+    -
+        const src = `${props.path}.${props.ext}`;
+        const srcMobile = props.mobile ? `${props.path}-mobile.${props.ext}` : null;
+        const alt = props.alt ?? '';
+        const mime = props.mime ?? props.ext;
+        const decoding = props.decoding ?? 'async';
+        const mediaDesktop = '(min-width: 1025px)';
+        const mediaMobile = '(max-width: 1024px)';
+
+    if props.mobile
+        picture&attributes(attributes)
+            source(srcset=srcMobile type=`image/${mime}` media=mediaMobile)
+            source(srcset=src type=`image/${mime}` media=mediaDesktop)
+            img(src=src alt=alt decoding=decoding width=props.width height=props.height)
+
+    else
+        img(src=src alt=alt decoding=decoding width=props.width height=props.height)&attributes(attributes)

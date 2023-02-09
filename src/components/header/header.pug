@@ -1,0 +1,18 @@
+-  const dataHeader = [{link: '', name: 'Get Launchbox'},{link: '', name: 'Games D8'},{link: '', name: 'Forums'},{link: '', name: 'Tutorials'},{link: '', name: 'Download'},{link: '', name: 'Big box'},{link: '', name: 'My collection'},]
+header.header
+    .container.df.al-center.ju-space-between
+        a.header-logo(href="/")
+            img(src=`${baseDir}assets/images/logo.png`)
+
+        ul.header-menu.df.al-center
+            each item in dataHeader
+                li
+                    a(href=item.link)
+                        != item.name
+        .header-right
+            .header-search
+                .header-search-button
+                    +svg('search')
+            .header-lk
+                .header-isLog
+                    img(src=`${baseDir}assets/images/face.png`)

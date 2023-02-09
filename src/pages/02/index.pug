@@ -1,0 +1,455 @@
+extends @pug/base
+
+append globals
+    - pageName = 'home'
+    - title = data[pageName]?.meta?.title ?? data.general.title
+    - description = data[pageName]?.meta?.description ?? data.general.description
+    - image = data[pageName]?.meta?.image ?? data.general.image
+
+append vars
+    - meta.keywords = data[pageName]?.meta?.keywords ?? data.general.keywords
+
+    each linkValue, linkKey in data.general.link
+        - link[linkKey] = linkValue
+
+    each metaValue, metaKey in data.general.meta
+        - meta[metaKey] = metaValue
+
+block content
+    .popup.is-hidden(data-item="1")
+        .popup-bg
+        .popup-content
+            .popup-close
+                +svg('close')
+            .popup-images
+            .popup-text
+    include @components/header/header.pug
+    main
+        .insert(style=`background-image: url(${baseDir}assets/images/insert-3.jpg)`)
+        .container
+            .mt-148
+                .title-lg.mb-18
+                    | Welcome to the LaunchBox#[br] Games Database
+                .text.mb-23
+                    | The LaunchBox Games Database aims to provide perfect game images and metadata#[br] for all known gaming platforms. Content is best viewed in LaunchBox
+                form.search
+                    .search-input
+                        input(placeholder="Search")
+                    button.search-button(type="submit")
+                        | Find
+
+            .tabs
+                .tabs-top.df.ju-space-between.js-tabs.al-center(data-tabs-target="#tabs-containers")
+                    .tabs-navigation.background.df
+                        .tabs-link.is-active.js-tab(data-tab-target="tab-1")
+                            | Platforms
+                        .tabs-link.js-tab(data-tab-target="tab-2")
+                            | Games
+
+                    .options.df.al-center.background
+                        .options-nav.is-active(data-select="cube")
+                            +svg('cube')
+                        .options-nav(data-select="line")
+                            +svg('line')
+
+                .tabs-content(data-tabs-target="#tabs-containers" id="tabs-containers" data-view="cube")
+                    .tabs-inner.js-tabs-container.tab-1.is-active(data-tab="1" id="tab-1")
+                        .df.flex-wrap.gap-18
+                            .card.card--info
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-2.png`)
+
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 3DO Interactive Multiplayer
+
+                                    .card-info
+
+                                        .card-text
+                                            | The 3DO Interactive Multiplayer (often called simply 3DO) is a video game console originally produced by Panasonic in 1993. Further renditions of the hardware were released in 199 ...
+
+
+                        .pagination.df.al-center.ju-content-center
+                            .pagination-nav.is-disabled
+                                +svg('arrow-prev')
+                                | Previous
+                            .pagination-list
+                                ul.df.al-center
+                                    li
+                                        a.is-active(href="#")
+                                            | 1
+                                    li
+                                        a(href="#")
+                                            | 2
+                                    li
+                                        a(href="#")
+                                            | 3
+                                    li
+                                        a(href="#")
+                                            | 4
+                                    li.is-disabled
+                                        a(href="#")
+                                            | ....
+                                    li
+                                        a(href="#")
+                                            | 100
+                            .pagination-nav
+                                | Next
+                                +svg('arrow-prev')
+
+                    .tabs-inner.js-tabs-container.tab-2.is-hidden(data-tab="1" id="tab-2")
+                        .df.ju-space-between.al-center.mb-20
+                            .df.gap-12
+                                select.custom-select.size-md
+                                    option(value='1') Developers
+                                    option(value='2') Another option
+                                select.custom-select.size-md
+                                    option(value='1') Publishers
+                                    option(value='2') Another option
+                                select.custom-select.size-md
+                                    option(value='1') Genres
+                                    option(value='2') Another option
+                            .settings.settings--text.df.al-center.js-popup(data-popup="add-game")
+                                | Add new game
+                        .df.flex-wrap.gap-18
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                            .card
+                                .card-bg
+                                    img(src=`${baseDir}assets/images/cards-2/bg-1.png`)
+                                .card-image
+                                    img(src=`${baseDir}assets/images/cards-2/1.png`)
+                                .card-content
+                                    .card-title.df.al-flex-end
+                                        | 100-in-1 Contra 16 Function
+                                        .card-right
+                                            .card-add
+                                                .card-popup
+                                                    .card-select
+                                                        | Add to collection
+                                                    .card-select
+                                                        | Default collection
+                                                    .card-select
+                                                        | New collection...
+                                                    .card-select
+                                                        | Manage collection
+                                                +svg('add').js-card-popup
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                    .card-info
+                                        .df.al-center.ju-space-between
+                                            .card-date
+                                                span
+                                                    | Homebrew
+                                                | December 24, 1988
+                                            .rating.df-line.al-center.background
+                                                .rating-stars.df.al-center
+                                                    .rating-star.is-select
+                                                .rating-number
+                                                    | 4.0
+                                        .card-text
+                                            | The analysis of market prices repels the portrait of the consumer. It's not a fact that BTL is focused. The promotion justif....
+
+                        .pagination.df.al-center.ju-content-center
+                            .pagination-nav.is-disabled
+                                +svg('arrow-prev')
+                                | Previous
+                            .pagination-list
+                                ul.df.al-center
+                                    li
+                                        a.is-active(href="#")
+                                            | 1
+                                    li
+                                        a(href="#")
+                                            | 2
+                                    li
+                                        a(href="#")
+                                            | 3
+                                    li
+                                        a(href="#")
+                                            | 4
+                                    li.is-disabled
+                                        a(href="#")
+                                            | ....
+                                    li
+                                        a(href="#")
+                                            | 100
+                            .pagination-nav
+                                | Next
+                                +svg('arrow-prev')
+
+    include @components/footer/footer.pug
