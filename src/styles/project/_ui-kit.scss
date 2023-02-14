@@ -129,6 +129,39 @@
         line-height: 28px;
         letter-spacing: -0.4px;
     }
+
+    &-sm {
+        font-weight: 800;
+        font-size: 40px;
+        line-height: 48px;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+    }
+
+    &-xs {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.4px;
+    }
+}
+
+.border {
+    &-green {
+        border-radius: 16px;
+        border: 1px solid $color-green;
+        background: rgba(122, 177, 204, 0.06);
+    }
+
+    &-red {
+        border-radius: 16px;
+        border: 1px solid $color-red;
+        background: rgba(122, 177, 204, 0.06);
+    }
+}
+
+.p-16 {
+    padding: 16px;
 }
 
 .text {
@@ -143,6 +176,23 @@
             margin: 0 9px;
         }
     }
+
+    &-right {
+        text-align: right;
+        margin-top: -14px;
+    }
+
+    &-color {
+        font-weight: 500;
+        color: $color-theme;
+        font-size: 14px;
+        line-height: 20px;
+        cursor: pointer;
+    }
+}
+
+.is-red {
+    color: $color-red;
 }
 
 .m-16-0-24 {
@@ -153,12 +203,29 @@
     margin-bottom: 12px;
 }
 
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+
 .mb-18 {
     margin-bottom: 18px;
 }
 
 .mb-20 {
     margin-bottom: 20px;
+}
+
+.mb-26 {
+    margin-bottom: 26px;
+}
+
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+.mb-32 {
+    margin-bottom: 32px;
 }
 
 .p-24 {
@@ -233,6 +300,14 @@
 
     &-2 {
         width: 278px;
+    }
+}
+
+.column-50 {
+    width: calc(50% - 16px);
+
+    input {
+        margin-bottom: 0;
     }
 }
 
@@ -1043,6 +1118,44 @@ select.custom-select {
             &:hover {
                 color: $color-white;
             }
+        }
+    }
+}
+
+.inner {
+    background: rgba(122, 177, 204, 0.06);
+    border-radius: 24px;
+}
+
+.label {
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.button {
+    display: inline-block;
+    border-radius: 12px;
+    border: 1px solid $color-theme;
+    padding: 14px 73px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    background: $color-theme;
+    cursor: pointer;
+    transition: all 0.3s linear;
+
+    &-transparent {
+        background: transparent;
+        color: $color-theme;
+    }
+
+    @include desktop {
+        &:hover {
+            color: $color-theme;
+            background: transparent;
         }
     }
 }

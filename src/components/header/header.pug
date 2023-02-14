@@ -14,5 +14,63 @@ header.header
                 .header-search-button
                     +svg('search')
             .header-lk
-                .header-isLog
-                    img(src=`${baseDir}assets/images/face.png`)
+                .header-isLog.js-modal(data-modal="login")
+                    +svg('enter')
+                    //img(src=`${baseDir}assets/images/face.png`)
+.modal.is-hidden(data-modal="login")
+    .modal-bg
+    .modal-content
+        .modal-close
+            +svg('close')
+        .login
+
+            .tabs
+                .title-sm.mb-26
+                    | Please Sign In#[br] or sign up
+                .tabs-top.df.ju-space-between.js-tabs.al-center(data-tabs-target="#tabs-containers")
+                    .tabs-navigation.background.df
+                        .tabs-link.is-active.js-tab(data-tab-target="tab-login")
+                            | Sign in
+                        .tabs-link.js-tab(data-tab-target="tab-reg")
+                            | Sign up
+
+
+
+                .tabs-content(data-tabs-target="#tabs-containers" id="tabs-containers")
+                    .tabs-inner.js-tabs-container.tab-1.is-active(id="tab-login")
+                        form
+                            .input
+                                input(placeholder="Enter email" type="text")
+                            .input
+                                input(placeholder="Enter password" type="password")
+                            .text.text-color.text-right.js-tab(data-tab-target="tab-forgot")
+                                | Forgot password?
+                            label.checkbox.df.al-center
+                                input(type="checkbox")
+                                span
+                                | Remember me
+                            button.form-button(type="submit")
+                                | Sign in
+
+                    .tabs-inner.js-tabs-container.is-hidden(id="tab-reg")
+                        form
+                            .input
+                                input(placeholder="Enter email" type="text")
+                            .input
+                                input(placeholder="Enter password" type="text")
+                            .input
+                                input(placeholder="Confirm password" type="text")
+                            .input
+                                input(placeholder="Game tag (public)" type="text")
+                            button.form-button(type="submit")
+                                | Sign up
+                    .tabs-inner.js-tabs-container.is-hidden(id="tab-forgot")
+                        form
+                            .input
+                                input(placeholder="Enter email" type="text")
+                            button.form-button(type="submit")
+                                | submit
+
+
+
+

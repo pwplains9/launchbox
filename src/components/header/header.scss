@@ -54,12 +54,30 @@
     }
 
     &-lk {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        background: rgba(122, 177, 204, 0.06);
+        border-radius: 12px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+
         .header-isLog {
             img {
                 border-radius: 12px;
             }
         }
     }
+}
 
 
+.games {
+    max-width: 1000px;
+    padding: 32px;
 }

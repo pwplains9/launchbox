@@ -1,17 +1,17 @@
 import helpers from "../../scripts/helpers/helpers";
 
 const init = () => {
-    const gallery = document.querySelectorAll('.js-popup');
+    const modal = document.querySelectorAll('.js-modal');
 
-    if (!gallery.length) {
+    if (!modal.length) {
         return;
     }
 
-    const $popup = document.querySelectorAll('.popup')
-    const $popupContent = document.querySelector('.popup-content')
-    const $closeButton = document.querySelectorAll('.popup-close')
-    const $bg = document.querySelectorAll('.popup-bg')
-    const $open = document.querySelectorAll('.js-popup');
+    const $popup = document.querySelectorAll('.modal')
+    const $popupContent = document.querySelector('.modal-content')
+    const $closeButton = document.querySelectorAll('.modal-close')
+    const $bg = document.querySelectorAll('.modal-bg')
+    const $open = document.querySelectorAll('.js-modal');
 
     const open = (event) => {
         if (helpers.isAnimating()) {
@@ -20,31 +20,9 @@ const init = () => {
 
         helpers.isAnimating(true);
 
-        let popup = document.querySelector(`.popup[data-item="1"]`);
+        let popup = document.querySelector(`.modal[data-modal="${event}"]`);
 
-        let content = popup.querySelector('.popup-content');
-
-        function createContent() {
-            let $info = event.target.closest('.js-popup');
-
-            if (!$info) {
-                return;
-            }
-
-            let $title = $info.querySelector('.grid-text');
-
-            let title = popup.querySelector('.popup-text');
-
-            if($title) {
-                title.textContent = $title.textContent;
-            }
-
-            document.querySelector('.popup-images').innerHTML = '';
-
-            let image = $info.querySelector('img');
-
-            document.querySelector('.popup-images').innerHTML += `<img src='${image.src}' width='${image.clientWidth}' height='${image.clientHeight < 400 ? image.clientHeight * 2: image.clientHeight}' alt="">`;
-        }
+        let content = popup.querySelector('.modal-content');
 
         if (popup.classList.contains('is-hidden')) {
             helpers.lockScroll(true, document.querySelector('main'), 'main')
@@ -56,8 +34,6 @@ const init = () => {
                 opacity: 0, onStart: () => {
                     popup.classList.remove('is-hidden');
                     popup.classList.add('is-active');
-
-                    createContent();
                 }
             }).from(content, 0.5, {
                 opacity: 0, y: 50, onStart: () => {
@@ -67,25 +43,55 @@ const init = () => {
         }
     }
 
+    const validModal = () => {
+        let gameTitle = document.querySelector('[data-input="game-title"]');
+        let gamePlatform = document.querySelector('[data-input="game-platform"]').nextSibling;
+
+        if(gameTitle.querySelector('input').value.length >= 1) {
+            document.querySelector('[data-input-info="game-title"]').textContent = gameTitle.querySelector('input').value;
+            close();
+
+            setTimeout(() => {
+                open('step-2');
+            }, 1000)
+        }
+
+        if(gamePlatform.querySelector('.selected').textContent !== 'Select') {
+            document.querySelector('[data-input-info="game-platform"]').textContent = gamePlatform.querySelector('.selected').textContent;
+        } else {
+            document.querySelector('[data-input-info="game-platform"]').textContent = 'Dont select';
+        }
+    }
+
     document.addEventListener("click", function (event) {
-        const target = event.target.closest('.js-popup');
+        const target = event.target.closest('.js-modal');
 
-        // let name = target.getAttribute('data-project');
-
-        if (!target) {
+        if(!target) {
             return;
         }
 
-        open(event);
+        let name = target.getAttribute('data-modal');
+
+        if (!name) {
+            return;
+        }
+
+        if(name === 'step-2') {
+            validModal();
+
+            return;
+        }
+
+        open(name);
     });
 
-    const close = () => {
+    function close(){
         if (helpers.isAnimating()) {
             return;
         }
 
-        let popup = document.querySelector(`.popup.is-active`);
-        let content = popup.querySelector('.popup-content');
+        let popup = document.querySelector(`.modal.is-active`);
+        let content = popup.querySelector('.modal-content');
 
         gsap.timeline().to(content, 0.5, {
             opacity: 0, y: 50,

@@ -12,6 +12,7 @@ import gsap from 'gsap';
 import {isDevices} from '@scripts/helpers/index';
 import popup from "../components/popup/popup";
 import NiceSelect from "nice-select2/dist/js/nice-select2";
+import modal from "../components/popup/modal";
 
 
 let els = document.querySelectorAll(".custom-select");
@@ -47,43 +48,44 @@ const tabs = () => {
         return false;
     }
 
-    let tabNav = document.querySelectorAll('.js-tab'), // Выбираем элементы навигации табов
-        tabName; // Переменная для имени таба
+    document.querySelectorAll('.tabs').forEach((item, index) => {
+        let tabNav = item.querySelectorAll('.js-tab'),
+            tabName;
 
-    // Проходим циклом по каждому элементу навигации и навешиваем обработчик клика, который вызывает функцию selectTabNav
-    tabNav.forEach((item) => {
-        item.addEventListener('click', selectTabNav)
-    });
-
-    function selectTabNav() {
         tabNav.forEach((item) => {
-            // Удаляем активный класс у всех элементов навигации табов
-            item.classList.remove('is-active');
+            item.addEventListener('click', selectTabNav)
         });
 
-        this.classList.add('is-active');  // Добавляем активный укласс у элемента по которому кликнули
-        tabName = this.getAttribute('data-tab-target'); // Получаем имя таба, который нам нужен
-        selectTabContent(tabName); // Запускаем функцию, чтобы показать выбранный таб
-    }
+        function selectTabNav() {
+            tabNav.forEach((item) => {
+                item.classList.remove('is-active');
+            });
 
-    function selectTabContent(tab) {
-        let activeTab = document.querySelector('.js-tabs-container.is-active');
-        let nextTab = document.querySelector(`.js-tabs-container[id='${tab}']`);
+            this.classList.add('is-active');
+            tabName = this.getAttribute('data-tab-target');
+            selectTabContent(tabName);
+        }
 
-        gsap.timeline().to(activeTab, 0.5, {
-            autoAlpha: 0,
-            clearProps: true,
-        })
-            .call(() => {
-                activeTab.classList.add('is-hidden');
-                activeTab.classList.remove('is-active');
-                nextTab.classList.remove('is-hidden');
-                nextTab.classList.add('is-active');
-            }).from(nextTab, 0.5, {
-            autoAlpha: 0,
-            clearProps: true,
-        })
-    }
+        function selectTabContent(tab) {
+            let activeTab = item.querySelector('.js-tabs-container.is-active');
+            let nextTab = item.querySelector(`.js-tabs-container[id='${tab}']`);
+
+            console.log(activeTab, nextTab)
+            gsap.timeline().to(activeTab, 0.5, {
+                autoAlpha: 0,
+                clearProps: true,
+            })
+                .call(() => {
+                    activeTab.classList.add('is-hidden');
+                    activeTab.classList.remove('is-active');
+                    nextTab.classList.remove('is-hidden');
+                    nextTab.classList.add('is-active');
+                }).from(nextTab, 0.5, {
+                autoAlpha: 0,
+                clearProps: true,
+            })
+        }
+    })
 }
 
 const options = () => {
@@ -99,7 +101,9 @@ const options = () => {
             event.currentTarget.classList.add('is-active');
             let data = event.currentTarget.getAttribute('data-select');
 
-            document.querySelector('#tabs-containers').setAttribute('data-view', data)
+            document.querySelectorAll('#tabs-containers').forEach((item) => {
+                item.setAttribute('data-view', data)
+            })
         });
     })
 }
@@ -132,6 +136,7 @@ const init = () => {
 
     tabs();
     popup.init();
+    modal.init();
 
     options();
     toggle('card-add');
